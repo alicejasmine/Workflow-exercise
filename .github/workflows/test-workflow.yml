@@ -15,20 +15,23 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
- build:
-   runs-on: ubuntu-latest
-   steps:
-     - uses: actions/checkout@v3
-     - name: Setup dotnet
-       uses: actions/setup-dotnet@v3
-       with:
-         dotnet-version: |
-           8.0.x
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+     
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: |
+            8.0.x
+
       - name: Create test project
-       run: dotnet new nunit
+        run: dotnet new nunit
 
-     - name: Show me the test file
-       run: cat UnitTest1.cs
+      - name: Show me the test file
+        run: cat UnitTest1.cs
 
-     - name: Run the test
-       run: dotnet test
+      - name: Run the test
+        run: dotnet test
